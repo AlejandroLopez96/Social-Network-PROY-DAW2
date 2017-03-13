@@ -1,0 +1,41 @@
+login:
+    path: /login
+    defaults: { _controller: AppBundle:User:login }
+##En defaults indicamos que Bundle va utilizar, que controlador va utilizar y que metodo va a utilizar
+##Asi configuramos la rutaç
+
+login_check:
+    path: /login_check
+    
+logout:
+    path: /logout
+
+
+register:
+    path: /register
+    defaults: { _controller: AppBundle:User:register }
+    
+
+user_nick_test:
+    path: /nick-test
+    defaults: { _controller: AppBundle:User:nickTest }
+    methods: [POST]
+##Hemos creado la nueva ruta y por defecto carga el controlador User y la accion nickTest
+##Y los metodos permitidos por http solamente va a permitirse por POST
+
+user_edit:
+    path: /my-data
+    defaults: { _controller: AppBundle:User:editUser }
+    
+user_list:
+    path: /people
+    defaults: {_controller: AppBundle:User:users }
+    
+user_search:
+    path: /search
+    defaults: {_controller: AppBundle:User:search }
+    
+user_profile:
+    path: /user/{nickname}
+    defaults: {_controller: AppBundle:User:profile, nickname:null }
+     

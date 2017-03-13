@@ -1,0 +1,20 @@
+{% extends "AppBundle:Layouts:layout.html.twig" %}
+{% block javascripts %}
+	{{ parent() }} <!-- Esta funcion de parent lo que hace es cargarno todos los js que habia y todo el contenido que habia y nos añade lo nuevo que hemos puesto debajo -->
+	<script src="{{ asset('assets/js/custom/nick-test.js') }}"></script>
+{% endblock %}
+{% block content %}
+<!-- Utilizamos el extends para heredar de una plantilla -->
+
+	<div class="col-lg-6 box-form">
+
+		<h2>Registrarse</h2>
+		<hr>
+
+		{{form_start(form, {'action':' ', 'method':'POST'})}}
+		{{form_errors(form)}}
+		{{form_end(form)}}
+
+	</div>
+
+{% endblock %}

@@ -1,0 +1,96 @@
+{% extends "AppBundle:Layouts:layout.html.twig" %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script src="{{ asset('assets/js/custom/users.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+<!-- Utilizamos el extends para heredar de una plantilla -->
+<div class="container">
+	<div class="col-lg-12 box-default">
+		{% if type == 'following' %}
+			<h1 class="box-header">Gente que sigue {{ profile_user.nick }}</h1>
+		{% else %}
+			<h1 class="box-header">Seguidores de {{ profile_user.nick }}</h1>
+		{% endif %}
+		<div class="count">
+			<span class="label label-primary">
+				Total de personas: {{ pagination.getTotalItemCount }}
+			</span>
+		</div>
+		
+		<hr/>
+		
+		<div class="box-content box-users">
+			<!-- Con esto recorremos todo el array de paginacion y en cada iteracion se va a crear una variable user que es la que vamos a estar utilizando y en cada variable user va a haber un obj del usuario -->
+			{% for follow in pagination %}
+				
+				{% if type == 'following' %}
+					{% set user = follow.followed %}
+				{% else %}
+					{% set user = follow.user %}
+				{% endif %}
+				
+				<div class="col-lg-12 user-item">
+					<div class="avatar">
+						{% if user.image == null %}
+							<img src="{{ asset('assets/images/default.png')}}">
+						{% else %}
+							<img src="{{ asset('uploads/users/'~user.image)}}">
+						{% endif %}
+					</div>
+					<div class="user-item-content">
+						<p>
+							<a href="{{ path('user_profile', {'nickname': user.nick}) }}" class="user_link">
+								{{ user.name }} {{ user.surname }} 
+							</a>
+							- {{ user.nick }}</p>
+						<p>{{ user.bio }}</p>
+					</div>
+					
+					{% if app.user.id != user.id %}
+						<div class="pull-right buttons-following">
+							<!-- EL IF DEL BOTON
+								Si el usuario que estamos usando esta siguiendo al usuario que se esta mostrando ocultamos el boton de Seguir
+							-->
+							<button class="btn btn-sm btn-success btn-follow
+									{% if app.user|following(user) == true %}
+										hidden
+									{% endif %}
+									" 
+									data-followed="{{ user.id }}">
+								<span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+								Seguir
+							</button>
+							<!-- EL IF DEL BOTON 2
+								Si el usuario que estamos usando no esta siguiendo al usuario que se esta mostrando ocultamos el boton de Dejar de seguir
+							-->	
+							<button class="btn btn-sm btn-danger btn-unfollow
+									{% if app.user|following(user) == false %}
+										hidden
+									{% endif %}
+									"
+									data-followed="{{ user.id }}">
+								<span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+								Dejar de segir
+							</button>
+						</div>
+					{% endif %}
+						
+					<div class="clearfix"></div>
+					<hr/>
+				</div>
+			{% endfor  %}
+		</div>
+		
+		<div class="navigation">
+			<!-- knp_pagination_render es una funcion que ya tiene twig y le pasamos la variable pagination que contiene todo el array de obj que sale de la bd con todos los usuarios  -->
+			{{ knp_pagination_render(pagination) }}
+		</div>
+		
+		<div class="clearfix"></div>
+	</div>
+</div>
+
+{% endblock %}
