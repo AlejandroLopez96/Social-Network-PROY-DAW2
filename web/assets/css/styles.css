@@ -6,6 +6,10 @@ body{
 
 /* HEADER */
 
+.titulo{
+	vertical-align: top;
+}
+
 .navbar-collapse .avatar{
 	background: white;
 	border-radius: 500px;
