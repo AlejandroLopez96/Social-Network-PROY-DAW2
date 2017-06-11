@@ -1,0 +1,17 @@
+{% extends "AppBundle:Layouts:layout.html.twig" %}
+{% block content %}
+<!-- Utilizamos el extends para heredar de una plantilla -->
+<div class="col-lg-8 box-form">
+    <div class="box-edit-user">
+	<h2>Mis datos</h2>
+	<hr/>
+	
+	{{ form_start(form, {'enctype': 'multipart/form-data'}) }}
+	
+	{{ form_end(form) }}
+        <div class="enlace-password">
+            <p><a href="{{path("user_edit_password")}}">¿Quieres cambiar tu contraseña?</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

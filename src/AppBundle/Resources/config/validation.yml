@@ -1,0 +1,21 @@
+BackendBundle\Entity\User:
+    properties:
+        name:
+            - NotBlank: {message: "El nombre no puede estar vacio"}
+        surname:
+            - NotBlank: {message: "Los apellidos no pueden estar vacios"}
+        nick:
+            - NotBlank: {message: "El nick no puede estar vacio"}
+        email:
+            - NotBlank: {message: "El email no puede estar vacio"}
+            - Email:
+                message: El email "{{ value }}" no es válido.
+                checkMX: false
+                
+BackendBundle\Entity\Publication:
+    properties:
+        text:
+            - Length:
+                max: 150
+                maxMessage: 'El meow no puede pasar de los {{limit}} carácteres'
+            

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head><meta http-equiv="Content-Type" content="text/html; charset=gb18030">
+		<title>{% block title %}  {% endblock %}</title>
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		{% block stylesheet %}  
+			<link href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+			<link href="{{ asset('assets/css/bootstrap.cosmo.min.css') }}" rel="stylesheet" type="text/css">
+			<link href="{{ asset('assets/css/styles.css') }}" rel="stylesheet" type="text/css">
+			<link href="{{ asset('assets/fonts/flaticon.css') }}" rel="stylesheet" type="text/css">
+			<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+			<link rel="shortcut icon" href="{{ asset('assets/favicon.ico') }}" type="image/x-icon">
+            <link rel="icon" href="{{ asset('assets/favicon.ico') }}" type="image/x-icon">
+		{% endblock %}
+		<!-- Se utiliza la funcion asset de twig ya que sirve para cargar los ficeros -->
+		{% block javascripts %} 
+			<script type="text/javascript">
+				var URL = "{{ app.request.getSchemeAndHttpHost() }}/web";
+				//Con la funcion app.request.getSchemeAndHttpHost() que es de twig nos saca lo que es http://localhost
+			</script>
+			<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+			<script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
+			<script src="{{ asset('assets/js/jquery-ias.min.js') }}"></script>
+			<script src="{{ asset('assets/js/custom/common.js') }}"></script>
+			<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		{% endblock %}
+		
+	</head>
+	<body>
+		<header>
+			<nav class="navbar navbar-fixed-top menu-principal">
+				<div class="container-fluid">
+					
+					<div class="navbar-header">
+					    
+						<!-- Aqui con este button vamos a hacer el menu plegable de cuando estamos en responsive  -->
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu-responsive" aria-expanded="false">
+							<span class="sr-only">Navegación</span>
+							<span class="glyphicon glyphicon-option-vertical icono-menu"></span>
+						</button>
+						<a href="{{path("app_homepage")}}" class="navbar-brand">
+							<span class="flaticon-cat" aria-hidden="true"></span>
+							<span class="titulo">MEOW</span>
+						</a>
+					</div>
+                                        <div class="menu-principal-responsive" id="menu-responsive">
+                                            <ul class="nav navbar-nav">
+                                                {% if app.user == null %}
+								<li>
+									<a href="{{path("login")}}">
+										<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+										&nbsp;
+                                                                                Entrar
+									</a>
+								</li>
+								<li>
+									<a href="{{path("register")}}">
+										<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+										&nbsp;
+                                                                                Registro
+									</a>
+								</li>
+							{% else %}
+                                                <li>
+                                                        <a href="{{ path('user_edit') }}">
+                                                                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> &nbsp;
+                                                                Mis datos
+                                                        </a>
+                                                </li>
+                                                <li>
+                                                        <a href="{{path("logout")}}">
+                                                                <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> &nbsp;
+                                                                Salir
+                                                        </a>
+                                                </li>
+                                                <li>
+                                                        <a href="">
+                                                                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> &nbsp;
+                                                                Ayuda
+                                                        </a>
+                                                </li>
+                                                {% endif %}
+                                            </ul>
+                                        </div>
+					<div class="collapse navbar-collapse">
+						<ul class="nav navbar-nav">
+							{% if app.user == null %}
+								<li>
+									<a href="{{path("login")}}">
+										<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+										&nbsp;
+                                                                                Entrar
+									</a>
+								</li>
+								<li>
+									<a href="{{path("register")}}">
+										<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+										&nbsp;
+                                                                                Registro
+									</a>
+								</li>
+							{% else %}
+								<li id="inicio">
+									<a href="{{path("app_homepage")}}">
+										<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+										<span>Inicio</span>
+									</a>
+								</li>
+								<li>
+									<a href="{{path("user_list")}}">
+										<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+										<span>Gente</span>
+									</a>
+								</li>
+								<li>
+									<form action="{{ path('user_search') }}">
+										<div class="buscador">
+                                                                                    <input type="text" class="input-buscador" placeholder="Buscar gente..." name="search">
+                                                                                    <button type="submit" class="boton-buscador">
+                                                                                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                                                                    </button>
+                                                                                </div>
+									</form>
+								</li>
+							{% endif %}
+						</ul>
+									
+						{% if app.user != null %}
+							<ul class="nav navbar-nav navbar-right">
+								<li>
+									<a href="{{path("private_message_index")}}">
+										<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+										<span id="span-mensajes">Mensajes privados</span>
+										<span class="label label-success label-notifications-msg">
+											
+										</span>
+									</a>
+								</li>
+								<li>
+									<a href="{{path("notifications_page")}}">
+										<span class="glyphicon glyphicon-bell gly-rotate" aria-hidden="true"></span>
+										<span id="span-notificaciones">Notificaciones</span>
+										<span class="label label-success label-notifications">
+											
+										</span>
+									</a>
+								</li>
+								<li class="dropdown">
+									<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aira-expanded="false">
+										<div class="avatar">
+											{% if app.user.image == null %}
+												<img src="{{ asset('assets/images/default.png')}}">
+											{% else %}
+												<img src="{{ asset('uploads/users/'~app.user.image)}}">
+											{% endif %}
+										</div>
+                                                                                <span class="span-nickname">{{app.user.nick}}</span>
+										<span class="caret"></span>
+									</a>
+										<ul class="dropdown-menu">
+											<li>
+												<a href="{{ path('user_profile', {'nickname': app.user.nick}) }}">
+													<span class="glyphicon glyphicon-user" aria-hidden="true"></span> &nbsp;
+													Mi perfil
+												</a>
+											</li>
+											<li>
+												<a href="{{ path('user_edit') }}">
+													<span class="glyphicon glyphicon-cog" aria-hidden="true"></span> &nbsp;
+													Mis datos
+												</a>
+											</li>
+											<li role="separator" class="divider"></li>
+											<li>
+												<a href="{{path("logout")}}">
+													<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> &nbsp;
+													Salir
+												</a>
+											</li>
+											<li>
+												<a href="">
+													<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> &nbsp;
+													Ayuda
+												</a>
+											</li>
+										</ul>
+								</li>
+							</ul>
+						{% endif%}
+					</div>
+									
+				</div>
+			</nav>
+			{% if app.user != null %}
+			<nav class="navbar navbar-fixed-bottom navbar-movil">
+				<div class="buscador-menu-movil">
+				<form action="{{ path('user_search') }}">
+					<div class="buscador">
+						<input type="text" class="input-buscador" placeholder="Buscar gente..." name="search">
+						<button type="submit" class="boton-buscador">
+							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+						</button>
+					</div>
+				</form>
+			</div>
+				<nav class="nav nav-pills nav-fill">
+					<li class="nav-item icono-menu-movil-inicio">
+						<a class="nav-link " href="{{path("app_homepage")}}">
+							<span class="glyphicon glyphicon-home"></span>
+						</a>
+					</li>
+					<li class="nav-item icono-menu-movil">
+						<a class="nav-link abre-div-buscador">
+							<span class="glyphicon glyphicon-search"></span>
+						</a>
+					</li>
+					<li class="nav-item  icono-menu-movil">
+						<a class="nav-link" href="{{path("notifications_page")}}">
+							<span class="glyphicon glyphicon-bell gly-rotate"></span>
+							<span class="label-notificaciones"></span>
+						</a>
+					</li>
+					<li class="nav-item  icono-menu-movil">
+						<a class="nav-link" href="{{path("private_message_index")}}">
+							<span class="glyphicon glyphicon-envelope "></span>
+							<span class="label-mensajes"></span>
+						</a>
+					</li>
+					
+						<li class="nav-item icono-menu-movil-final">
+							<a class="nav-link " href="{{ path('user_profile', {'nickname': app.user.nick}) }}">
+								<span class="glyphicon glyphicon-user "></span>
+							</a>
+						</li>
+					
+				</nav>
+			</nav>
+			{% endif %}
+		</header>
+		<section id="content" class="contenido">
+			
+			<div class="container">
+				<div class="col-lg-2"></div>
+				<div class="col-lg-8">
+					<!-- Aqui recorre los mensajes flash que haya -->
+					{% for message in app.session.flashbag().get("status") %}
+						<div class="alert alert-warning mensaje-tiempo">{{message}}</div>
+					{% endfor %}	
+				</div>
+			</div>
+			<div class="clearfix"></div>
+			{% block content %}  
+				Content default
+			{% endblock %}
+		</section>
+		<footer>
+			<hr/>
+			<div class="container">
+				<p class="text-muted">&copy; Alejandro López Ortiz 2017 / MEOW</p>
+			</div>
+		</footer>
+	</body>
+</html>
