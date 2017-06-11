@@ -1,9 +1,0 @@
-##backend:
-    ##resource: "@BackendBundle/Resources/config/routing.yml"
-    ##prefix: /
-##Cuando no necesitamos que esa configuracion de rutas de ese bundle concreto este, lo que se hace es eliminarla
-##y asi nos quedaremos con la configuracion de ruta que tiene el AppBundle
-
-app:
-    resource: "@AppBundle/Resources/config/routing.yml"
-    prefix: /
