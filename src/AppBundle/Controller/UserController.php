@@ -186,6 +186,51 @@ class UserController extends Controller {
 					"form" => $form->createView()
 		));
 	}
+        
+        public function editPasswordAction (Request $request) {
+
+		$user = $this->getUser(); //Esto va a cargar los datos del usuario que esta logueado dentro del formulario
+		$form = $this->createForm(\AppBundle\Form\EditPasswordType::class, $user);
+
+		//Esto sirve para settear directamente en el objeto Usuario lo que se recibe por el metodo post
+		$form->handleRequest($request);
+		//Este if comprovamos que el formulario se ha enviado correctamente
+		if ($form->isSubmitted()) {
+			//Y con este comprobamos que el formulario es valido
+			if ($form->isValid()) {
+				//Conseguimos el EntityManager para empezar a trabajar con la bd
+				$em = $this->getDoctrine()->getManager();
+				//La query-> Saca todo los objetos de usuario con los datos cargados de bd cuyo email sea igual al email que pasamos por parametro o cuyo nick sea igual al nick que pasamos por parametro
+                                    
+                                //Codificacion de contraseña
+                                $factory = $this->get("security.encoder_factory"); //Security es un servicio de symfony
+                                $encoder = $factory->getEncoder($user); //Utilizo el factory para saacar el encode que tiene la clase usuario
+
+
+                                $password = $encoder->encodePassword($form->get("password")->getData(), $user->getSalt());
+                                //Utilizamos el objeto encode y va a utilizar un metodo que se llama encodePassword y le pasamos el valor por post que nos llega por formulario y obtenemos el valor, y despues utilizamos el Salt que tenga la clase usuario
+
+                                $user->setPassword($password);
+
+                                $em->persist($user); //Esto volcamos dentro de doctrine todos los datos que hemos hecho, guardar ese objeto y persistirlo dentro de doctrine y luego guardarlo en la base de datos
+                                $flush = $em->flush(); //Con esto pasamos todos los objetos que tengamos persistidos lo pasa a la base de datos
+
+                                if ($flush == null) {
+                                        $status = "Has modificado correctamente tu contraseña.";
+                                } else {
+                                        $status = "No has modificado tu contraseña correctamente";
+                                }
+			} else {
+				$status = "No se ha modificado tu contraseña correctamente";
+			}
+
+			$this->session->getFlashBag()->add("status", $status); //Con esto creamos el mensaje Flash
+		}
+
+		return $this->render('AppBundle:User:edit_password_user.html.twig', array(
+					"form" => $form->createView()
+		));
+	}
 
 	public function usersAction(Request $request) {
 
@@ -255,7 +300,7 @@ class UserController extends Controller {
 		//Vamos a sacar todas la publicaciones de nuestra tabla publication cuyo usuario sea el $user_id
 		$dql = "SELECT p FROM BackendBundle:Publication p WHERE p.user = $user_id ORDER BY p.id DESC";
 		$query = $em->createQuery($dql);
-		
+        
 		$paginator = $this->get('knp_paginator');
 		$publications = $paginator->paginate(
 				$query, $request->query->getInt('page', 1), 5
@@ -268,5 +313,34 @@ class UserController extends Controller {
 		
 	}
 
+    public function GalleryAction(Request $request, $nickname = null){
+		$em = $this->getDoctrine()->getManager();
+		$db= $em->getConnection();
+		
+		if($nickname != null){
+			$user_repo = $em->getRepository('BackendBundle:User');
+			$user = $user_repo->findOneBy(array('nick' => $nickname));
+		}else{
+			$user = $this->getUser();//Asi cargariamos el perfil del usuario que nosotros tenemos en sesion
+		}
+		
+		if(empty($user) || !is_object($user)){//Si el usuario que llega por url esta vacio o no es un objeto nos redirige a home_publications
+			return $this->redirect($this->generateUrl('home_publications'));
+		}
+		
+		$user_id = $user->getId();
+		
+		$dql = "SELECT *, DATE_FORMAT(created_at,'%d/%m/%Y') AS created_at FROM publications WHERE user_id = $user_id AND image != 'null' ORDER BY publications . created_at DESC " ;
+		$stmt = $db->prepare($dql);
+		$params = array();
+		$stmt->execute($params);
+		$im=$stmt->fetchAll();
+		
+		return $this->render('AppBundle:User:gallery.html.twig', array(
+			'user' => $user,//Aqui va a estar todos los datos del usuario a mostrar
+			'i' => $im//En la vista vamos a tener una variable llamada pagination que le pasamos la variable de nuestra accion pagination, entonces la informacion de $pagination se pasa a la vista y en la vista se va a convertir en una variable disponible en la vista
+		));
+		
+	}
 	
 }

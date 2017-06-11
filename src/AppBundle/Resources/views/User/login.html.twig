@@ -2,7 +2,7 @@
 {% block content %}
 <!-- Utilizamos el extends para heredar de una plantilla -->
 	<div class="col-lg-4 box-form">
-
+            <div class="box-edit-user">
 		<h2>Identificarse</h2>
 		<hr>
 
@@ -20,6 +20,10 @@
 			<input type="hidden" name="_target_path" value="/home">
 			<!-- Nos va apermitir defiinir a que ruta nos va a llevar el formulario despues de autentificar -->
 		</form>
-
+                
+                <div class="enlace-password">
+                    <p><a href="{{path("register")}}">¿No tienes cuenta? Regístrate</a></p>
+                </div>
+            </div>
 	</div>
 {% endblock %}

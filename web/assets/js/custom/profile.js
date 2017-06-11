@@ -16,7 +16,7 @@ $(document).ready(function(){
 	
 	//Con esto va a cargar la imagen de carga
 	ias.extension(new IASSpinnerExtension({
-		src: URL+'/../assets/images/ajax-loader.gif'
+		src: URL+'/assets/images/ajax-loader.gif'
 	}));
 	
 	//El boton que saldra cuando ya no existan mas elementos a mostrar

@@ -7,14 +7,18 @@
 <!-- Utilizamos el extends para heredar de una plantilla -->
 
 	<div class="col-lg-6 box-form">
-
+            <div class="box-edit-user">
 		<h2>Registrarse</h2>
 		<hr>
 
 		{{form_start(form, {'action':' ', 'method':'POST'})}}
 		{{form_errors(form)}}
 		{{form_end(form)}}
-
+                
+                <div class="enlace-password">
+                    <p><a href="{{path("login")}}">¿Tienes cuenta? Inicia sesión</a></p>
+                </div>
+            </div>    
 	</div>
 
 {% endblock %}

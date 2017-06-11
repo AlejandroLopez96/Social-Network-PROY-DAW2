@@ -27,6 +27,10 @@ user_edit:
     path: /my-data
     defaults: { _controller: AppBundle:User:editUser }
     
+user_edit_password:
+    path: /change-password
+    defaults: { _controller: AppBundle:User:editPassword }
+
 user_list:
     path: /people
     defaults: {_controller: AppBundle:User:users }
@@ -38,4 +42,8 @@ user_search:
 user_profile:
     path: /user/{nickname}
     defaults: {_controller: AppBundle:User:profile, nickname:null }
+    
+user_gallery:
+    path: /gallery/{nickname}
+    defaults: {_controller: AppBundle:User:gallery, nickname:null }
      

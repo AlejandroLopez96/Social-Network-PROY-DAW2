@@ -65,7 +65,7 @@ class PrivateMessageController extends Controller {
 
 				if (!empty($doc) && $doc != null) {
 					$ext = $doc->guessExtension(); //Capturamos la extension del fichero con esta funcion
-					if ($ext == 'pdf') {
+					if ($ext == 'pdf' || $ext == 'doc' || $ext == 'docx') {
 						$file_name = $user->getId() . time() . "." . $ext;
 						$doc->move("uploads/messages/documents", $file_name);
 

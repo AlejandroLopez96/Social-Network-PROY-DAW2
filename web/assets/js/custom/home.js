@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	
+
 	var ias = jQuery.ias({
 		container: "#timeline .box-content",//El contenedor que tiene todos los usuarios que vamos a paginar
 		item: '.publication-item',//El item a paginar es el que tiene la clase .user-item
@@ -16,7 +16,7 @@ $(document).ready(function(){
 	
 	//Con esto va a cargar la imagen de carga
 	ias.extension(new IASSpinnerExtension({
-		src: URL+'/../assets/images/ajax-loader.gif'
+		src: URL+'/assets/images/ajax-loader.gif'
 	}));
 	
 	//El boton que saldra cuando ya no existan mas elementos a mostrar

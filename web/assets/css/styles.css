@@ -4,10 +4,19 @@ body{
 	background: #eee;
 }
 
+.contenido {
+	margin-top: 80px;
+}
+
 /* HEADER */
 
 .titulo{
 	vertical-align: top;
+}
+
+.menu-principal {
+	background-color: aliceblue;
+	border-bottom-color: darkblue;
 }
 
 .navbar-collapse .avatar{
@@ -26,6 +35,174 @@ body{
 	text-align: center;
 }
 
+.buscador {
+        margin-top: 9px;
+}
+
+.input-buscador {
+        border: 0px;
+        padding: 6px;
+        background-color: aliceblue;
+}
+
+.boton-buscador {
+        border: 0px;
+        padding: 6px;
+        background-color: aliceblue;
+        color: darkblue;
+        margin-left: -3px;
+}
+
+.gly-rotate {
+	-webkit-transform: rotate(20deg);
+	-moz-transform: rotate(20deg);
+	-ms-transform: rotate(20deg);
+	-o-transform: rotate(20deg);
+	transform: rotate(20deg);
+}
+
+.icono-menu{
+	color: darkblue;
+}
+
+.navbar-movil {
+	display: none;
+	background-color: aliceblue;
+	border-top-color: darkblue;
+}
+
+.navbar-movil-top {
+	display: none;
+}
+
+.icono-menu-movil-inicio{
+	font-size: 20px;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+.icono-menu-movil{
+	font-size: 20px;
+	margin-right: 5%;
+}
+
+.icono-menu-movil-final{
+	font-size: 20px;
+}
+
+.label-mensajes {
+	font-size: 12px;
+	position: relative;
+	top: -13px;
+	left: -2px;
+	font-weight: bold;
+	color: red;
+}
+
+.label-notificaciones {
+	font-size: 12px;
+	position: relative;
+	top: -13px;
+	left: -7px;
+	font-weight: bold;
+	color: red;
+}
+
+.buscador-menu-movil{
+	display: none;
+}
+
+.menu-principal-responsive{
+    display: none;
+}
+
+@media (max-width: 1080px) {
+	#span-mensajes{
+		display: none;
+	}
+	
+	#span-notificaciones{
+		display: none;
+	}
+	
+	.span-nickname {
+		display: none;
+	}
+}
+
+@media (max-width: 767px) {
+        #span-mensajes{
+		display: inline-block;
+	}
+	
+	#span-notificaciones{
+		display: inline-block;
+	}
+        
+	.span-nickname {
+		display: inline-block;
+	}
+	
+	.navbar-movil {
+		display: block;
+	}
+	
+        .buscador{
+                margin-left: 14px;
+        }
+        
+        .input-buscador {
+                width: 90%;
+        }
+		
+	.icono-menu-movil-inicio{
+		font-size: 20px;
+		margin-left: 10%;
+		margin-right: 10%;
+	}
+
+	.icono-menu-movil{
+		font-size: 20px;
+		margin-right: 10%;
+	}
+
+		
+	.navbar-movil-top {
+		display: block;
+	}
+}
+
+@media (max-width: 600px) {
+
+	.icono-menu-movil-inicio{
+		font-size: 20px;
+		margin-left: 3%;
+		margin-right: 10%;
+	}
+
+	.icono-menu-movil{
+		font-size: 20px;
+		margin-right: 10%;
+	}
+	
+}
+
+
+
+@media (max-width: 489px) {
+
+	.icono-menu-movil-inicio{
+		font-size: 20px;
+		margin-right: 5%;
+	}
+
+	.icono-menu-movil{
+		font-size: 20px;
+		margin-right: 5%;
+	}
+	
+}
+
 /* REGISTRO */
 
 .box-form, .box-default{
@@ -41,6 +218,13 @@ body{
 	margin-bottom: 10px;
 }
 
+.enlace-password {
+	float: right;
+}
+
+.box-edit-user{
+	padding-bottom: 20px;
+}
 
 /* GENTE  Y TIMELINE*/
 
@@ -74,8 +258,7 @@ body{
 
 /*  HOME  */
 
-#timeline{
-	margin-right: 20px;
+#timeline{	
 	min-height: 750px;
 	padding-bottom: 20px;
 }
@@ -88,6 +271,7 @@ body{
 }
 
 #user-card{
+	margin-right: 20px;
 	padding: 10px;
 	margin-bottom: 20px;
 }
@@ -158,6 +342,73 @@ body{
 	margin-bottom: 10px;
 }
 
+input[type=file].input-image{
+    display: none;
+}
+
+input[type=file].input-file{
+    display: none;
+}
+
+.nombre-image{
+    display:none;
+    font-weight: bold;
+    padding-bottom: 15px;
+}
+
+.nombre-document{
+    display:none;
+    float: right;
+    font-weight: bold;
+    max-width: 35%;
+    word-break: break-word;
+}
+
+.boton-eliminar-archivo{
+    display:inline-block;
+    font-size: 10px;
+    margin: 3px;
+    top: 0px;
+    cursor: pointer;
+    float:right;
+}
+
+.boton-eliminar-archivo-doc{
+    display:inline-block;
+    font-size: 10px;
+    margin: 3px;
+    top: 0px;
+    cursor: pointer;
+    float:right;
+}
+
+.muestra-imagen{
+	max-height: 100px;
+}
+
+.div-form-meow{
+    width: 21px;
+    float: right;
+    display: inline-block;
+}
+.div-form-meow-image{
+    width: 21px;
+    float: right;
+    display: inline-block;
+    margin-right: 3%;
+}
+
+.file{
+    cursor: pointer;
+    font-size: 18px;
+    color: darkblue;
+}
+.image{
+    cursor: pointer;
+    font-size: 18px;
+    color: darkblue;
+}
+
 .pub-name-link{
 	font-weight: bold;
 	color: black;
@@ -191,6 +442,11 @@ body{
 	color: #555 !important;
 }
 
+.text-publication {
+        width: 80%;
+        word-wrap: break-word;
+}
+
 #dialogoborrar{
 	display:none;
 }
@@ -213,6 +469,72 @@ body{
 .like .active{
 	color: red !important;
 }
+
+.banner{
+    width: 32.5%;
+    top: 616px;
+    left: 55px;
+    height: 240px;
+    position: absolute;
+    background-size: 100% 100%;
+    animation: banner 10s infinite; 
+}
+
+@keyframes banner{
+    0%, 2% {
+        opacity:0.1;
+    }
+    3%, 30% {
+        background-image: url(../images/img1.jpg);
+        opacity: 1;
+    }
+    31%, 34% {
+        opacity:0.1;
+    }
+    35%, 65% {
+        opacity:1;
+        background-image: url(../images/img2.jpg);
+    }
+    66%, 69% {
+        opacity: 0.1;
+    }
+    70%, 97% {
+        opacity:1;
+        background-image: url(../images/img3.jpg);
+    }
+    98%, 100% {
+        opacity: 0.1;
+    }
+}
+
+@media (min-width: 1200px) {
+    #user-card{
+        margin-left: 40px;
+    }
+}
+
+@media (max-width: 1200px){
+    .banner{
+        display:none;
+    }
+}
+
+@media (max-width: 767px) {
+    .container-fluid>#user-card>.user-card-pc{
+        display:none;
+    }
+}
+
+@media (max-width: 430px) {
+
+	.pub-image{
+		display: none;
+		transition: all 300ms;
+		width: 170%;
+		margin-left: -54%;
+	}
+}
+
 
 /* PERFILES  */
 
@@ -247,40 +569,50 @@ body{
 	margin-bottom: 20px;
 }
 
-.profile-box #user_stats{
-	margin: 0px auto;
-	margin-bottom: 20px;
-	padding-bottom: 20px;
-	padding-top: 20px;
-	border-top: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
-	width: 47%;
+.profile-box .galeria{
 	text-align: center;
 }
 
-.profile-box #user_stats .following-data{
-	float: left;
+.profile-box > #user-card{
+	margin-right: 0px;
 }
 
-.profile-box #user_stats a{
+.profile-box > #user-card > .following-data{
+	width: 25%;
+	float: left;
+	text-align: center;
+	border-top: 1px solid #ccc;
+	padding: 5px;
+	margin-top: 10px;
+}
+
+.profile-box > #user-card > a{
 	color: #444;
 }
 
-.profile-box #user_stats .label-stat{
+.profile-box > #user-card > .label-stat{
 	display: block;
-	font-size: 18px;
-	margin-right: 20px;
-	margin-left: 20px;
-	text-align: center;
 }
 
-.profile-box #user_stats .number-stat{
+.profile-box > #user-card > .number-stat{
+	display: block;
+	font-size: 16px;
 	font-weight: bold;
+}
+
+.profile-box > #user-card > .following-data > a:hover{
+	color: black;
+	text-decoration: none;
 }
 
 .profile-box .buttons-following{
 	margin-top: 20px;
 }
+
+@media (max-width: 500px) {
+    .profile-box > #user-card > .following-data {
+        width: 50%;
+    }
 
 /*  PRIVATE MESSAGES */
 
@@ -288,4 +620,13 @@ body{
 .box-private-message textarea,
 .box-private-message select{
 	margin-bottom: 10px;
+}
+
+/*   EDIT USER   */
+.enlace-password{
+        float:right;
+}
+
+.box-form .box-edit-user {
+    padding-bottom: 20px;
 }

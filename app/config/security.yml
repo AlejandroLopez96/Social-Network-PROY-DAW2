@@ -53,6 +53,8 @@ security:
         - { path: ^/people, roles: [ROLE_USER, ROLE_ADMIN]}
         - { path: ^/search, roles: [ROLE_USER, ROLE_ADMIN]}
         - { path: ^/user, roles: [ROLE_USER, ROLE_ADMIN]}
+        - { path: ^/change-password, roles: [ROLE_USER, ROLE_ADMIN]}
+        - { path: ^/gallery, roles: [ROLE_USER, ROLE_ADMIN]}
         - { path: ^/private-message, roles: [ROLE_USER, ROLE_ADMIN]}
         - { path: ^/private-message/sended, roles: [ROLE_USER, ROLE_ADMIN]}
         - { path: ^/private-message/notification/get, roles: [ROLE_USER, ROLE_ADMIN]}

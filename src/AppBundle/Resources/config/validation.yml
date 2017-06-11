@@ -12,5 +12,10 @@ BackendBundle\Entity\User:
                 message: El email "{{ value }}" no es válido.
                 checkMX: false
                 
-            
+BackendBundle\Entity\Publication:
+    properties:
+        text:
+            - Length:
+                max: 150
+                maxMessage: 'El meow no puede pasar de los {{limit}} carácteres'
             

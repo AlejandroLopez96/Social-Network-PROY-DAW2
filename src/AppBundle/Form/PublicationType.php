@@ -20,26 +20,33 @@ class PublicationType extends AbstractType
     {
         $builder
 		->add('text', TextareaType::class, array(
-			'label'=> 'Mensaje',
+			'label'=> 'Meow',
 			'required' => true,
 			'attr' => array(
-				'class' => 'form-control'
+				'class' => 'form-control',
+				'placeholder' => '¿Que te cuentas?'
 			)
 		))
 		->add('image', FileType::class, array(
-			'label'=> 'Foto',
+			'label'=> ' ',
+                        'label_attr' => array (
+                                'class' => 'glyphicon glyphicon-camera image'
+                        ),
 			'required' => false,
 			'data_class' => null,//El atributa data_class se encarga de decir a que clase pertenece esto pero normalmente se utiliza para mostras que ese campo es independiente y nos va a permitir manipular totalmente la imagen que subamos
 			'attr' => array(
-				'class' => 'form-control'
+				'class' => 'input-image'
 			)
 		))
 		->add('document', FileType::class, array(
-			'label'=> 'Documento',
+			'label'=> ' ',
+                        'label_attr' => array (
+                                'class' => 'glyphicon glyphicon-paperclip file'
+                        ),
 			'required' => false,
 			'data_class' => null,//El atributa data_class se encarga de decir a que clase pertenece esto pero normalmente se utiliza para mostras que ese campo es independiente y nos va a permitir manipular totalmente la imagen que subamos
 			'attr' => array(
-				'class' => 'form-control'
+				'class' => 'input-file'
 			)
 		))
 		->add('Enviar', SubmitType::class, array(
