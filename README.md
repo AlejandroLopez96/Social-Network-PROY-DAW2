@@ -1,6 +1,7 @@
 Symfony Standard Edition
 ========================
 
+<<<<<<< HEAD
 Welcome to the Symfony Standard Edition - a fully-functional Symfony
 application that you can use as the skeleton for your new applications.
 
@@ -67,3 +68,6 @@ Enjoy!
 [11]: https://symfony.com/doc/3.1/logging.html
 [12]: https://symfony.com/doc/3.1/assetic/asset_management.html
 [13]: https://symfony.com/doc/current/bundles/SensioGeneratorBundle/index.html
+=======
+## Red Social tipo twitter utilizando Symfony3, jQuery Ajax, Bootstrap, MySQL
+>>>>>>> origin/master
