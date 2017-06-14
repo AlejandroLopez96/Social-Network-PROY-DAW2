@@ -1,3 +1,3 @@
 # Social-Network-PROY-DAW2
-* [Enlace aplicación MEOW](http://meow2.heliohost.org/web/)
+* [http://meow2.heliohost.org](http://meow2.heliohost.org)
 
